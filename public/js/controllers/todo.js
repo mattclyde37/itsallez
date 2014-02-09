@@ -12,7 +12,6 @@ angular.module('ezApp')
     { id: 1, name: 'Linda' },
     { id: 2, name: 'Dakota' }
   ];
-  $scope.employee = $scope.employees[0];
 
    $scope.priorities = [
     { label: 'A'},
