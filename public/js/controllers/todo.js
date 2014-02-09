@@ -8,10 +8,12 @@ angular.module('ezApp')
   $scope.todos = $firebase(todosRef);
   $scope.archivedTodos = [];
   $scope.employees = [
+    { id: -1, name: '(unassigned)'},
     { id: 0, name: 'Matt' },
     { id: 1, name: 'Linda' },
     { id: 2, name: 'Dakota' }
   ];
+  $scope.employee = $scope.employees[0];
 
    $scope.priorities = [
     { label: 'A'},
