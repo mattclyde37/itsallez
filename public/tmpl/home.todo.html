@@ -260,7 +260,12 @@
 		<!--
 		<select chosen style="width:100px;" ng-model="selectedPriority" ng-options="p.label for p in priorities"></select> -->
 		<div>
-			<input type="text" placeholder="Enter new task..." ng-model="todoText" style="width:600px; padding:5px">
+			<input type="text" placeholder="Enter new task..." ng-model="todoText" style="width:500px; padding:5px">
+			<!--
+			<input type="text" placeholder="Task Duration..." ng-model="duration" style="width:75px; padding:5px">
+			<select chosen watch="timeTypes" style="width:70px" ng-model="selectedTimeType" ng-options="t.label for t in timeTypes">
+			</select>
+		-->
 		</div>
 		<div class="clear"></div>
 		<div style="width:600px; margin-top:10px">
@@ -275,11 +280,15 @@
 </div>
 
 <div id="todo-lists">
+
+	<div style="padding:10px;">
+		<span>Search: </span><input type="text" style="width:200px;" ng-model="serchText" placeholder="Search">
+	</div>
 	<table class="todo-table">
 		<tr>
 			<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td>Employee</td>
 		</tr>
-		<tr ng-repeat="(id, todo) in getOpenTodos() | orderByPriority">
+		<tr ng-repeat="(id, todo) in getOpenTodos() | orderByPriority | filter:serchText ">
 			<td>
 				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
 			<td>{{todo.$priority}}</td>

@@ -20,10 +20,19 @@ angular.module('ezApp')
     { label: 'C'},
     { label: 'D'}
   ];
+
+  $scope.timeTypes = [
+    { label: 'Minutes' },
+    { label: 'Hours' },
+    { label: 'Days' },
+    { label: 'Weeks' }
+  ];
+  $scope.selectedTimeType = $scope.timeTypes[0];
+
   $scope.selectedPriority = $scope.priorities[0];
  
   $scope.addTodo = function() {
-      var todo = {text:$scope.todoText, done:false, name:$scope.employee.name, $priority:$scope.selectedPriority.label, archive:false};
+      var todo = { text:$scope.todoText, done:false, name:$scope.employee.name, $priority:$scope.selectedPriority.label, archive:false, duration:$scope.duration};
     $scope.todos.$add(todo);
     $scope.todoText = '';
   };
@@ -125,7 +134,7 @@ angular.module('ezApp')
   };
 
   $scope.getCheveronDirection = function() {
-    return ($scope.showCompleted) ? 'up' : 'down';
+    return $scope.showCompleted ? 'up' : 'down';
   };
 
 
