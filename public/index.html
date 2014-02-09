@@ -1,8 +1,35 @@
-<html>
+<html ng-app="ezApp">
 <head>
 	<title>EZ Sales Log</title>
+
+	<link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/vendor/chosen.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"></script>
+    <script src="js/vendor/angular-ui-router.min.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.2.3/firebase-simple-login.js'></script>
+
+    <script type="text/javascript" src="js/vendor/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="js/vendor/chosen.proto.min.js"></script>
+
+
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/controllers/home.js"></script>
+    <script type="text/javascript" src="js/controllers/login.js"></script>
+    <script type="text/javascript" src="js/controllers/dashboard.js"></script>
+    <script type="text/javascript" src="js/controllers/sales.js"></script>
+    <script type="text/javascript" src="js/controllers/services.js"></script>
+    <script type="text/javascript" src="js/controllers/todo.js"></script>
+
+    <script type="text/javascript" src="js/services/auth.js"></script>
+    
 </head>
 <body>
-
+	<div ui-view></div>
 </body>
 </html>

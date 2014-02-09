@@ -1,0 +1,150 @@
+/* global angular, Firebase  */
+
+angular.module('ezApp')
+	.controller('TodoCtrl', function ($scope, $firebase, $state, Auth) {
+	'use strict';
+
+    var todosRef = new Firebase('https://matts-todos.firebaseio.com/todos');
+  $scope.todos = $firebase(todosRef);
+  $scope.archivedTodos = [];
+  $scope.employees = [
+    { id: 0, name: 'Matt' },
+    { id: 1, name: 'Linda' },
+    { id: 2, name: 'Dakota' }
+  ];
+  $scope.employee = $scope.employees[0];
+
+   $scope.priorities = [
+    { label: 'A'},
+    { label: 'B'},
+    { label: 'C'},
+    { label: 'D'}
+  ];
+  $scope.selectedPriority = $scope.priorities[0];
+ 
+  $scope.addTodo = function() {
+      var todo = {text:$scope.todoText, done:false, name:$scope.employee.name, $priority:$scope.selectedPriority.label, archive:false};
+    $scope.todos.$add(todo);
+    $scope.todoText = '';
+  };
+ 
+   
+  $scope.remaining = function() {
+    var count = 0;
+    angular.forEach($scope.todos.$getIndex(), function (index) {
+      if ($scope.todos[index])
+        count += $scope.todos[index].done ? 0 : 1;
+    });
+    return count;
+  };
+
+  $scope.total = function() {
+    var count = 0;
+    angular.forEach($scope.todos.$getIndex(), function (index) {
+      count++;
+    });
+    return count;
+  };
+
+  $scope.completed = function() {
+    var count = 0;
+    angular.forEach($scope.todos.$getIndex(), function (index) {
+      if ($scope.todos[index]){
+        count += $scope.todos[index].done && !$scope.todos[index].archive ? 1 : 0;
+      }
+
+    });
+    return count;
+  };
+
+  $scope.getOpenTodos = function(){
+    $scope.openTodos = [];
+    angular.forEach($scope.todos.$getIndex(), function(index){
+      if ($scope.todos[index]) {
+        if (!$scope.todos[index].archive)
+          $scope.openTodos.push($scope.todos[index]);
+      }
+    });
+    return $scope.openTodos;
+  };
+
+  $scope.getArchivedTodos = function(){
+    $scope.archivedTodos = [];
+    angular.forEach($scope.todos.$getIndex(), function(index){
+      if ($scope.todos[index]) {
+        if ($scope.todos[index].archive)
+          $scope.archivedTodos.push($scope.todos[index]);
+      }
+    });
+    return $scope.archivedTodos;
+  };
+
+  $scope.showCompleted = false;
+  $scope.toggleCompleted = function(){
+    $scope.showCompleted = !$scope.showCompleted;
+  };
+
+  $scope.toggleCompletedStr = function(){
+    return $scope.showCompleted ? 'Hide' : 'Show';
+  };
+
+  $scope.archive = function(){
+    angular.forEach($scope.todos.$getIndex(), function(index){
+      if ($scope.todos[index]){
+            if ($scope.todos[index].done && !$scope.todos[index].archive) {
+                $scope.todos[index].archive = true;
+                $scope.todos.$save(index);
+            }
+      }
+    });
+  };
+
+  $scope.selectedTodosCount = function(){
+    var count = 0;
+    for (var i = 0; i < $scope.archivedTodos.length; ++i){
+      if ($scope.archivedTodos[i].selected)
+        count++;
+    }
+    return count;
+  };
+
+  $scope.showDeleteBtn = function(){
+    return ($scope.selectedTodosCount() > 0);
+  };
+
+  $scope.deleteSelected = function (){
+    angular.forEach($scope.todos.$getIndex(), function (index){
+      for (var i = 0; i < $scope.archivedTodos.length; ++i) {
+        if ($scope.archivedTodos[i].selected && $scope.archivedTodos[i].id === $scope.todos[index].id){
+          $scope.todos.$remove(index);
+        }
+      }
+    });
+
+    
+  };
+
+  $scope.getCheveronDirection = function() {
+    return ($scope.showCompleted) ? 'up' : 'down';
+  };
+
+
+});
+
+
+
+angular.module('ezApp')
+  .directive('chosen', function(){
+    'use strict';
+    var linker = function(scope, element, attr){
+      scope.$watch(attr.watch, function(){
+        element.trigger('chosen:updated');
+      });
+      element.chosen();
+    };
+
+    return {
+      restrict: 'A',
+      link: linker
+    };
+  });

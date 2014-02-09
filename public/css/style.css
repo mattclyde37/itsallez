@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+.clear{
+	clear: both;
+}
+
+.float-right{
+	float: right;
+}
+
+.float-left{
+	float:left;
+}
+
+
+
+
+
+
+
+

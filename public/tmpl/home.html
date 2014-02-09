@@ -1,0 +1,90 @@
+<style type="text/css">
+	#main-nav-bar{
+		background: #ffffff; /* Old browsers */
+		background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+		box-shadow: 0 2px 5px #aaaaaa;
+		height: 75px;
+		line-height: 75px;
+	}
+
+	#main-nav-bar .store{
+		margin-left: 40px;
+		font-size: 30;
+		color: #505050;
+		cursor: pointer;
+	}
+	#main-nav-bar .brand{
+		margin: 10px;
+		font-size: 15;
+		color: #aaaaaa;
+	}
+
+	#main-nav-bar .nav-items{
+		display: inline;
+		float: right;
+		margin-right: 10px;
+	}
+	#main-nav-bar .nav-items div{
+		display: inline;
+		padding: 20px;
+		font-size: 20;
+		color: #505050
+	}
+	#main-nav-bar .nav-items div:hover{
+		display: inline;
+		padding: 20px;
+		font-size: 20;
+		color: #408dd2;
+	}
+	#main-nav-bar .nav-items div.active{
+		display: inline;
+		padding: 20px;
+		font-size: 20;
+		color: #408dd2;
+	}
+
+
+	#main-content{
+		background-color: #efefef;
+		max-width: 1024px;
+		margin: 10px auto;
+		padding-left: 50px;
+		padding-right: 50px;
+		padding-bottom: 50px;
+		padding-top: 25px;
+
+	}
+
+	#footer{
+		color: #909090;
+		margin: 30px;
+	}
+
+</style>
+
+<div id="main-nav-bar">
+	<span class="store" ng-click="dashboard()">Salt Lake</span>
+	<span class="brand">EZ II Rent To Own</span>
+	<div class="nav-items">
+		<div class="btn" ng-class="getClassForState('sales')" ng-click="sales()" >Sales</div>
+		<div class="btn" ng-class="getClassForState('services')" ng-click="services()" >Services</div>
+		<div class="btn" ng-class="getClassForState('todo')" ng-click="todo()" >Todo</div>
+		<div class="btn btn-default" style="font-size:14; margin-left:15px" ng-click="logout()">Logout</div>
+	</div>
+</div>
+
+<div id="main-content">
+	<div ui-view></div>
+</div>
+
+<div id="footer">@2014 EZ II Rent To Own</div>
+
+
+
+
