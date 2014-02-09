@@ -11,7 +11,9 @@ angular.module('ezApp')
     { id: -1, name: '(unassigned)'},
     { id: 0, name: 'Matt' },
     { id: 1, name: 'Linda' },
-    { id: 2, name: 'Dakota' }
+    { id: 2, name: 'Dakota' },
+    { id: 2, name: 'Richard' }
+
   ];
   $scope.employee = $scope.employees[0];
 
