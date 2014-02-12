@@ -173,7 +173,7 @@
 	border:0px solid #ffffff;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:17px;
+	font-size:15px;
 	font-family:Arial;
 	font-weight:bold;
 	color:#ffffff;
@@ -212,12 +212,14 @@
 #new-task-form{
 	margin-bottom: 45px;
 	margin-top: 30px;
-	width: 665px;
+	width: 850px;
 	background-color:#e4e8ec; 
 	padding:15px;
 	padding-left: 35px;
 	padding-right: 35px;
 	border-radius: 15;
+	font-size: 18;
+	line-height: 40px;
 }
 #new-task-form div{
 	margin-bottom:10px;
@@ -225,6 +227,9 @@
 #new-task-form h4{
 	display: inline;
 	margin-right: 5px;
+}
+#new-task-form input{
+	font-size: 18;
 }
 
 .done-true {
@@ -247,53 +252,98 @@
 	margin-bottom: 10px;
 }
 
+.margin-5{
+	margin:5px;
+}
+
+
+
+
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input {
+    padding-left: 30px;    
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+
+
+#user-selector{
+}
+
+#user-selector a{
+	margin: 10px;
+}
+
 </style>
 
+<div id="user-selector">
+	<a class="btn btn-default" ng-repeat="(id, user) in viewableUsers" ng-click="storeSelected(id)">{{user.firstname}}</a>
+</div>
+
 <div id="todo-header">
-	<h2>Todos</h2>
+	<h2>Hockey Pace To-Do</h2>
 	<span>{{remaining()}} of {{total()}} remaining</span>
 </div>
 
-<div id="new-task-form" style="">
+<div id="new-task-form" class="form-inline" style="">
 	<legend style="color:#606060">What needs to be done?</legend>
 	<form ng-submit="addTodo()">
 		<!--
 		<select chosen style="width:100px;" ng-model="selectedPriority" ng-options="p.label for p in priorities"></select> -->
 		<div>
-			<input type="text" placeholder="Enter new task..." ng-model="todoText" style="width:500px; padding:5px">
-			<!--
-			<input type="text" placeholder="Task Duration..." ng-model="duration" style="width:75px; padding:5px">
-			<select chosen watch="timeTypes" style="width:70px" ng-model="selectedTimeType" ng-options="t.label for t in timeTypes">
+			<input class="form-control" type="text" placeholder="Enter non-routine task..." ng-model="todoText" style="width:575px; padding:5px">
+			<input class="form-control" type="text-field" placeholder="Duration" ng-model="duration" style="width:85px; padding:5px">
+			<select chosen watch="timeTypes" style="width:100px" ng-model="selectedTimeType" ng-options="t.label for t in timeTypes">
 			</select>
-		-->
 		</div>
 		<div class="clear"></div>
-		<div style="width:600px; margin-top:10px">
+		<div style="width:775; margin-top:10px">
 			<h4 style="color:#606060">Priority:</h4>
 			<select chosen watch="priorities" style="width:50px" ng-model="selectedPriority" ng-options="p.label for p in priorities">
 			</select>
 			<h4 style="margin-left:25px; color:#606060">Assigned To:</h4>
 			<select chosen watch="employees" style="width:200px"  ng-model="employee" ng-options="e.name for e in employees"></select>
-			<input style="float: right" type="submit" class="btn btn-primary" value="Add Task" >
+			<span class="glyphicon glyphicon-user margin-5"></span>
+			<input style="float: right" type="submit" class="btn btn-primary" value="Add Task" ></input>
 		</div>
 	</form>
 </div>
 
 <div id="todo-lists">
 
-	<div style="padding:10px;">
-		<span>Search: </span><input type="text" style="width:200px;" ng-model="serchText" placeholder="Search">
+	<div style="padding-bottom:10px; float: right">
+		<input type="text" style="width:200px;" ng-model="serchText" placeholder="Search">
 	</div>
 	<table class="todo-table">
 		<tr>
-			<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td>Employee</td>
+			<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td style="width:220px">Employee</td><td style="width:110px">Due</td>
 		</tr>
 		<tr ng-repeat="(id, todo) in getOpenTodos() | orderByPriority | filter:serchText ">
 			<td>
 				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
 			<td>{{todo.$priority}}</td>
 			<td class="done-{{todo.done}}" >{{todo.text}}</td>
-			<td>{{todo.name}}</td>
+			<td>{{todo.employee.name}}</td>
+			<td style="width:120px">{{getDurationStr(todo)}}</td>
 		</tr>
 	</table>
 	<div class="btn btn-default" ng-click="toggleCompleted()">{{toggleCompletedStr()}} Completed <span style="padding-left: 5px;" class="glyphicon glyphicon-chevron-{{getCheveronDirection()}}"></span></div>
@@ -303,14 +353,15 @@
 		<span>{{getArchivedTodos().length}} Archived</span>
 		<table class="todo-table-archive" style="margin-top:20px">
 			<tr>
-				<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td>Employee</td>
+				<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td>Employee</td><td style="width:110px">Due</td>
 			</tr>
 			<tr ng-repeat="(id, todo) in getArchivedTodos() | orderByPriority">
 				<td>
-					<input type="checkbox" ng-model="todo.selected" /></td>
+				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
 				<td>{{todo.$priority}}</td>
 				<td class="done-{{todo.done}}" >{{todo.text}}</td>
-				<td>{{todo.name}}</td>
+				<td style="width:190px">{{todo.employee.name}}</td>
+				<td style="width:120px">{{getDurationStr(todo)}}</td>
 			</tr>
 		</table>
 		<div ng-show="showDeleteBtn()" ng-click="deleteSelected()" style="float: right" class="btn btn-danger">Delete {{selectedTodosCount()}} Tasks</div>

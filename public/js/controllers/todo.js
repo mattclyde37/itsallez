@@ -1,11 +1,10 @@
-/* global angular, Firebase  */
+/* global angular  */
 
 angular.module('ezApp')
-	.controller('TodoCtrl', function ($scope, $firebase, $state, Auth) {
+	.controller('TodoCtrl', function ($scope, $firebase, $state, $interval, Auth, Todos, Session) {
 	'use strict';
 
-    var todosRef = new Firebase('https://matts-todos.firebaseio.com/todos');
-  $scope.todos = $firebase(todosRef);
+  $scope.todos = Todos.getTodos(Session.user.id);
   $scope.archivedTodos = [];
   $scope.employees = [
     { id: -1, name: '(unassigned)'},
@@ -35,7 +34,7 @@ angular.module('ezApp')
   $scope.selectedPriority = $scope.priorities[0];
  
   $scope.addTodo = function() {
-      var todo = { text:$scope.todoText, done:false, name:$scope.employee.name, $priority:$scope.selectedPriority.label, archive:false, duration:$scope.duration};
+      var todo = { text:$scope.todoText, done:false, employee: { id:$scope.employee.id, name:$scope.employee.name}, $priority:$scope.selectedPriority.label, archive:false, duration:$scope.duration, timeType:$scope.selectedTimeType.label};
     $scope.todos.$add(todo);
     $scope.todoText = '';
   };
@@ -53,7 +52,9 @@ angular.module('ezApp')
   $scope.total = function() {
     var count = 0;
     angular.forEach($scope.todos.$getIndex(), function (index) {
-      count++;
+      if ($scope.todos[index])
+        if (!$scope.todos[index].archive)
+          count++;
     });
     return count;
   };
@@ -140,6 +141,15 @@ angular.module('ezApp')
     return $scope.showCompleted ? 'up' : 'down';
   };
 
+  $scope.getDurationStr = function(todo){
+    return (todo.duration) ? todo.duration + ' ' + todo.timeType : 'n/a';
+  };
+
+  $scope.storeSelected = function(id){
+    $scope.todos = Todos.getTodos(id);
+  };
+
+  $scope.viewableUsers = Session.getViewableUsers();
 
 });
 

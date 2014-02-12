@@ -1,8 +1,11 @@
 /* global angular */
 
 angular.module('ezApp')
-	.controller('HomeCtrl', function ($scope, $firebase, $state, Auth) {
+	.controller('HomeCtrl', function ($scope, $firebase, $state, Auth, Session) {
 	'use strict';
+
+	$scope.user = Session.getUserAccount();
+	debugger;
 
 	$scope.selectedState = '';
 	$scope.getClassForState = function (state) {
