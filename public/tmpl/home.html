@@ -66,10 +66,40 @@
 		margin: 30px;
 	}
 
+	#store-selector{
+
+		background: rgb(163,163,163); /* Old browsers */
+		background: -moz-linear-gradient(top,  rgba(163,163,163,1) 0%, rgba(117,117,117,1) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(163,163,163,1)), color-stop(100%,rgba(117,117,117,1))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  rgba(163,163,163,1) 0%,rgba(117,117,117,1) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  rgba(163,163,163,1) 0%,rgba(117,117,117,1) 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  rgba(163,163,163,1) 0%,rgba(117,117,117,1) 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  rgba(163,163,163,1) 0%,rgba(117,117,117,1) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a3a3a3', endColorstr='#757575',GradientType=0 ); /* IE6-9 */
+
+		display: inline-block;		
+		background-color:grey; 
+		margin:0 auto;
+		border-radius: 0 0 20px 20px;
+		box-shadow: 0 2px 5px #aaaaaa;
+	}
+
+	#store-selector div{
+		padding: 15px;
+		color: white;
+	}
+	#store-selector div:hover{
+		color: #bad2ff;
+	}
+	#store-selector div.active{
+		color: #bad2ff;
+	}
+
+
 </style>
 
 <div id="main-nav-bar">
-	<span class="store" ng-click="dashboard()">{{user.firstname}} {{user.lastname}}</span>
+	<span class="store" ng-click="storeSelected(userId)">{{user.firstname}} {{user.lastname}}</span>
 	<span class="brand">EZ II Rent To Own</span>
 	<div class="nav-items">
 		<div class="btn" ng-class="getClassForState('sales')" ng-click="sales()" >Sales</div>
@@ -77,6 +107,12 @@
 		<div class="btn" ng-class="getClassForState('todo')" ng-click="todo()" >Todo</div>
 		<div class="btn btn-default" style="font-size:14; margin-left:15px" ng-click="logout()">Logout</div>
 	</div>
+</div>
+
+<div style="text-align:center">
+	<span id="store-selector">
+		<div class="btn" ng-class="getClassForStore(id)" ng-repeat="(id, user) in viewableUsers" ng-click="storeSelected(id)">{{user.firstname}}</div>
+	</span>
 </div>
 
 <div id="main-content">

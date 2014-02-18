@@ -5,7 +5,7 @@ angular.module('ezApp')
 	'use strict';
 
 	$scope.user = Session.getUserAccount();
-	debugger;
+	$scope.userId = Session.user.id;
 
 	$scope.selectedState = '';
 	$scope.getClassForState = function (state) {
@@ -33,6 +33,20 @@ angular.module('ezApp')
 		$state.transitionTo('home.todo');
 	};
 
+	$scope.storeSelected = function(id){
+		debugger;
+		$scope.selectedStore = id;
+		if (Session.storeSelected)
+			Session.storeSelected(id);
+	};
+
+	$scope.getClassForStore = function(id){
+		return $scope.selectedStore === id ? 'active' : '';
+	};
+
+	
+
+  $scope.viewableUsers = Session.getViewableUsers();
 
 
 });

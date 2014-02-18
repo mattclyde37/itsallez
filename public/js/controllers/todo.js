@@ -145,7 +145,7 @@ angular.module('ezApp')
     return (todo.duration) ? todo.duration + ' ' + todo.timeType : 'n/a';
   };
 
-  $scope.storeSelected = function(id){
+  Session.storeSelected = function(id){
     $scope.todos = Todos.getTodos(id);
   };
 
