@@ -334,12 +334,13 @@
 <div id="todo-lists">
 
 	<div style="padding-bottom:10px; float: right">
-		<input type="text" style="width:200px;" ng-model="serchText" placeholder="Search">
+		<input type="text" style="width:200px;" ng-model="searchText" placeholder="Search">
 	</div>
 	<table class="todo-table">
 		<tr>
 			<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td style="width:220px">Employee</td><td style="width:110px">Due</td><td style="width:40px">Edit</td>
 		</tr>
+<<<<<<< HEAD
 		<tr ng-repeat="(id, todo) in getOpenTodos() | orderByPriority | filter:serchText ">
 			<td ng-show="showReadOnly(todo)">
 				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
@@ -356,6 +357,15 @@
 			</td>
 			<td ng-show="showEditing(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
 			<td><span ng-click="toggleEditMode(todo)" class="glyphicon glyphicon-{{getEditButtonClass(todo)}} tbl-btn"></span></td>
+=======
+		<tr ng-repeat="todo in getOpenTodos() | orderBy:priority | filter:searchText ">
+			<td>id
+				<input type="checkbox" ng-model="todo.done" ng-change="todoChanged(todo.id)" /></td>
+			<td>{{todo.priority}}</td>
+			<td class="done-{{todo.done}}" >{{todo.text}}</td>
+			<td>{{todo.employee.name}}</td>
+			<td style="width:120px">{{getDurationStr(todo)}}</td>
+>>>>>>> 1cf7df2062b673863546e7b79c11789067a819f0
 		</tr>
 	</table>
 	<div class="btn btn-default" ng-click="toggleCompleted()">{{toggleCompletedStr()}} Completed <span style="padding-left: 5px;" class="glyphicon glyphicon-chevron-{{getCheveronDirection()}}"></span></div>

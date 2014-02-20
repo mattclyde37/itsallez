@@ -34,7 +34,6 @@ angular.module('ezApp')
 	};
 
 	$scope.storeSelected = function(id){
-		debugger;
 		$scope.selectedStore = id;
 		if (Session.storeSelected)
 			Session.storeSelected(id);
@@ -44,10 +43,9 @@ angular.module('ezApp')
 		return $scope.selectedStore === id ? 'active' : '';
 	};
 
+	Session.getViewableUsers(function(users){
+		$scope.viewableUsers = users;
+	});
 	
-
-  $scope.viewableUsers = Session.getViewableUsers();
-
-
 });
 
