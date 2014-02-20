@@ -25,7 +25,7 @@ angular.module('ezApp')
   $scope.selectedPriority = $scope.priorities[0];
  
   $scope.addTodo = function() {
-      var todo = { text:$scope.todoText, done:false, employee: { id:$scope.employee.id, name:$scope.employee.name}, $priority:$scope.selectedPriority.label, archive:false, duration:$scope.duration, timeType:$scope.selectedTimeType.label};
+      var todo = { text:$scope.todoText, done:false, employee: { id:$scope.employee.id, firstname:$scope.employee.firstname, lastname:$scope.employee.lastname}, $priority:$scope.selectedPriority.label, archive:false, duration:$scope.duration, timeType:$scope.selectedTimeType.label};
     $scope.todos.$add(todo);
     $scope.todoText = '';
   };
@@ -154,9 +154,11 @@ angular.module('ezApp')
     $scope.employees = [];
     $scope.todos = Todos.getTodos(id);
     Session.getEmployees(id, function(list){
+      var emps = [];
       angular.forEach(list.$getIndex(), function (index){
-        $scope.employees.push(list[index]);
+        emps.push(list[index]);
       });
+      $scope.employees = emps;
     });
   };
 

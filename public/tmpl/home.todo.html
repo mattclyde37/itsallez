@@ -324,11 +324,6 @@
 			<select chosen watch="priorities" style="width:50px" ng-model="selectedPriority" ng-options="p.label for p in priorities">
 			</select>
 			<h4 style="margin-left:25px; color:#606060">Assigned To:</h4>
-
-			<ul ng-repeat="e in employees">
-				<li>{{e.firstname}}</li>
-			</ul>
-
 			<select chosen watch="employees" style="width:200px"  ng-model="employee" ng-options="e.firstname for e in employees"></select>
 			<span class="glyphicon glyphicon-user margin-5"></span>
 			<input style="float: right" type="submit" class="btn btn-primary" value="Add Task" ></input>
@@ -350,7 +345,7 @@
 				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
 			<td ng-show="showReadOnly(todo)">{{todo.$priority}}</td>
 			<td ng-show="showReadOnly(todo)" class="done-{{todo.done}}" >{{todo.text}}</td>
-			<td ng-show="showReadOnly(todo)">{{todo.employee.name}}</td>
+			<td ng-show="showReadOnly(todo)">{{todo.employee.firstname}}</td>
 			<td ng-show="showReadOnly(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
 			<td ng-show="showEditing(todo)" ></td>
 			<td ng-show="showEditing(todo)"><input style="width:40px" value="{{editingTodo.$priority}}"></td>
@@ -376,7 +371,7 @@
 				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
 				<td>{{todo.$priority}}</td>
 				<td class="done-{{todo.done}}" >{{todo.text}}</td>
-				<td style="width:190px">{{todo.employee.name}}</td>
+				<td style="width:190px">{{todo.employee.firstname}}</td>
 				<td style="width:120px">{{getDurationStr(todo)}}</td>
 			</tr>
 		</table>
