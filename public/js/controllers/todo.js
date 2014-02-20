@@ -70,12 +70,20 @@ angular.module('ezApp')
     return count;
   };
 
+  $scope.todoChanged = function(id){
+    $scope.todos.$save(id);
+  };
+
   $scope.getOpenTodos = function(){
     $scope.openTodos = [];
-    angular.forEach($scope.todos.$getIndex(), function(index){
+    angular.forEach($scope.todos.$getIndex(), function (index){
       if ($scope.todos[index]) {
         if (!$scope.todos[index].archive)
-          $scope.openTodos.push($scope.todos[index]);
+        {
+          var todo = $scope.todos[index];
+          todo.id = index;
+          $scope.openTodos.push(todo);
+        }
       }
     });
     return $scope.openTodos;
@@ -86,7 +94,11 @@ angular.module('ezApp')
     angular.forEach($scope.todos.$getIndex(), function(index){
       if ($scope.todos[index]) {
         if ($scope.todos[index].archive)
-          $scope.archivedTodos.push($scope.todos[index]);
+        {
+          var todo = $scope.todos[index];
+          todo.id = index;
+          $scope.openTodos.push(todo);
+        }
       }
     });
     return $scope.archivedTodos;
