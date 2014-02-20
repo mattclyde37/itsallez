@@ -5,15 +5,7 @@ angular.module('ezApp')
 	'use strict';
 
   $scope.archivedTodos = [];
-  $scope.employees = [
-    { id: -1, name: '(unassigned)'},
-    { id: 0, name: 'Matt' },
-    { id: 1, name: 'Linda' },
-    { id: 2, name: 'Dakota' },
-    { id: 2, name: 'Richard' }
-
-  ];
-  $scope.employee = $scope.employees[0];
+  $scope.employees = [];
 
    $scope.priorities = [
     { label: 'A'},
@@ -156,11 +148,16 @@ angular.module('ezApp')
     return (todo.duration) ? todo.duration + ' ' + todo.timeType : 'n/a';
   };
 
-  debugger;
   if (Session.storeSelected)
     $scope.todos = Todos.getTodos(Session.storeSelected);
   Session.storeSelected = function(id){
+    $scope.employees = [];
     $scope.todos = Todos.getTodos(id);
+    Session.getEmployees(id, function(list){
+      angular.forEach(list.$getIndex(), function (index){
+        $scope.employees.push(list[index]);
+      });
+    });
   };
 
   $scope.viewableUsers = Session.getViewableUsers();

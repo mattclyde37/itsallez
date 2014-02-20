@@ -45,5 +45,13 @@ angular.module('ezApp')
 		});
 	};
 
+	session.getEmployees = function(id, handler){
+		var employeesRef = new Firebase('https://itsallez-sltd37.firebaseio.com/users/' + id + '/employees');
+		var employees = $firebase(employeesRef);
+		employees.$on('loaded', function(){
+			handler(employees);
+		});
+	};
+
 	return session;
 });
