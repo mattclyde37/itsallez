@@ -151,6 +151,27 @@ angular.module('ezApp')
 
   $scope.viewableUsers = Session.getViewableUsers();
 
+  $scope.editingTodo = {};
+
+  $scope.toggleEditMode = function(todo){
+    if ($scope.editingTodo === todo)
+      $scope.editingTodo = {};
+    else
+      $scope.editingTodo = todo;
+  }
+
+  $scope.getEditButtonClass = function(todo){
+    return ($scope.editingTodo === todo) ? 'ok' : 'pencil';
+  }
+
+  $scope.showReadOnly = function (todo){
+    return (todo !== $scope.editingTodo);
+  }
+
+  $scope.showEditing = function (todo){
+    return (todo === $scope.editingTodo);
+  }
+
 });
 
 

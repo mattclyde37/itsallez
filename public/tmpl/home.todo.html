@@ -56,7 +56,7 @@
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:13px;
-	font-size:18px;
+	font-size:15px;
 	font-family:Arial;
 	font-weight:normal;
 	color:#323232;
@@ -76,7 +76,7 @@
 	border:0px solid #ffffff;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:17px;
+	font-size:15px;
 	font-family:Arial;
 	font-weight:bold;
 	color:#ffffff;
@@ -153,7 +153,7 @@
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:13px;
-	font-size:18px;
+	font-size:15px;
 	font-family:Arial;
 	font-weight:normal;
 	color:#323232;
@@ -293,6 +293,13 @@
 	margin: 10px;
 }
 
+.tbl-btn{
+	cursor: pointer;
+}
+.tbl-btn:hover{
+	cursor: pointer;
+	color: grey;
+}
 </style>
 
 <div id="todo-header">
@@ -331,15 +338,24 @@
 	</div>
 	<table class="todo-table">
 		<tr>
-			<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td style="width:220px">Employee</td><td style="width:110px">Due</td>
+			<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td style="width:220px">Employee</td><td style="width:110px">Due</td><td style="width:40px">Edit</td>
 		</tr>
 		<tr ng-repeat="(id, todo) in getOpenTodos() | orderByPriority | filter:serchText ">
-			<td>
+			<td ng-show="showReadOnly(todo)">
 				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
-			<td>{{todo.$priority}}</td>
-			<td class="done-{{todo.done}}" >{{todo.text}}</td>
-			<td>{{todo.employee.name}}</td>
-			<td style="width:120px">{{getDurationStr(todo)}}</td>
+			<td ng-show="showReadOnly(todo)">{{todo.$priority}}</td>
+			<td ng-show="showReadOnly(todo)" class="done-{{todo.done}}" >{{todo.text}}</td>
+			<td ng-show="showReadOnly(todo)">{{todo.employee.name}}</td>
+			<td ng-show="showReadOnly(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
+
+			<td ng-show="showEditing(todo)" ></td>
+			<td ng-show="showEditing(todo)"><input style="width:40px" value="{{editingTodo.$priority}}"></td>
+			<td ng-show="showEditing(todo)"><textarea cols="48">{{editingTodo.text}}</textarea></td>
+			<td ng-show="showEditing(todo)">
+				<select chosen watch="employees" style="width:200px" ng-model="editingTodo.employee" ng-options="e.name for e in employees"></select>
+			</td>
+			<td ng-show="showEditing(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
+			<td><span ng-click="toggleEditMode(todo)" class="glyphicon glyphicon-{{getEditButtonClass(todo)}} tbl-btn"></span></td>
 		</tr>
 	</table>
 	<div class="btn btn-default" ng-click="toggleCompleted()">{{toggleCompletedStr()}} Completed <span style="padding-left: 5px;" class="glyphicon glyphicon-chevron-{{getCheveronDirection()}}"></span></div>
