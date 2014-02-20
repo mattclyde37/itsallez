@@ -4,7 +4,6 @@ angular.module('ezApp')
 	.controller('TodoCtrl', function ($scope, $firebase, $state, $interval, Auth, Todos, Session) {
 	'use strict';
 
-  $scope.todos = Todos.getTodos(Session.user.id);
   $scope.archivedTodos = [];
   $scope.employees = [
     { id: -1, name: '(unassigned)'},
@@ -157,6 +156,9 @@ angular.module('ezApp')
     return (todo.duration) ? todo.duration + ' ' + todo.timeType : 'n/a';
   };
 
+  debugger;
+  if (Session.storeSelected)
+    $scope.todos = Todos.getTodos(Session.storeSelected);
   Session.storeSelected = function(id){
     $scope.todos = Todos.getTodos(id);
   };

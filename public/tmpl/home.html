@@ -111,7 +111,7 @@
 
 <div style="text-align:center">
 	<span id="store-selector">
-		<div class="btn" ng-class="getClassForStore(id)" ng-repeat="(id, user) in viewableUsers" ng-click="storeSelected(id)">{{user.firstname}}</div>
+		<div class="btn" ng-class="getClassForStore(user.id)" ng-repeat="user in viewableUsers" ng-click="storeSelected(user.id)">{{user.firstname}}</div>
 	</span>
 </div>
 
