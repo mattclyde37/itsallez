@@ -25,8 +25,7 @@ angular.module('ezApp')
   $scope.selectedPriority = $scope.priorities[0];
  
   $scope.addTodo = function() {
-      var todo = { text:$scope.todoText, done:false, employee: { id:$scope.employee.id, firstname:$scope.employee.firstname, lastname:$scope.employee.lastname}, $priority:$scope.selectedPriority.label, archive:false, duration:$scope.duration, timeType:$scope.selectedTimeType.label};
-    $scope.todos.$add(todo);
+    Todos.addTodo(Session.selectedStoreId, $scope.todoText, $scope.employee, $scope.selectedPriority.label, $scope.duration, $scope.selectedTimeType.label);
     $scope.todoText = '';
   };
  
@@ -52,12 +51,10 @@ angular.module('ezApp')
 
   $scope.completed = function() {
     var count = 0;
-    angular.forEach($scope.todos.$getIndex(), function (index) {
-      if ($scope.todos[index]){
-        count += $scope.todos[index].done && !$scope.todos[index].archive ? 1 : 0;
-      }
-
-    });
+    for (var i = 0; i < $scope.openTodos.length; ++i){
+      if ($scope.openTodos[i].done)
+        count++;
+    }
     return count;
   };
 
@@ -65,34 +62,34 @@ angular.module('ezApp')
     $scope.todos.$save(id);
   };
 
-  $scope.getOpenTodos = function(){
-    $scope.openTodos = [];
-    angular.forEach($scope.todos.$getIndex(), function (index){
-      if ($scope.todos[index]) {
-        if (!$scope.todos[index].archive)
+  $scope.getOpenTodos = function(fromTodos){
+    var todos = [];
+    angular.forEach(fromTodos.$getIndex(), function (index){
+      if (fromTodos[index]) {
+        if (!fromTodos[index].archive)
         {
-          var todo = $scope.todos[index];
+          var todo = fromTodos[index];
           todo.id = index;
-          $scope.openTodos.push(todo);
+          todos.push(todo);
         }
       }
     });
-    return $scope.openTodos;
+    return todos;
   };
 
-  $scope.getArchivedTodos = function(){
-    $scope.archivedTodos = [];
-    angular.forEach($scope.todos.$getIndex(), function(index){
-      if ($scope.todos[index]) {
-        if ($scope.todos[index].archive)
+  $scope.getArchivedTodos = function(fromTodos){
+    var todos = [];
+    angular.forEach(fromTodos.$getIndex(), function(index){
+      if (fromTodos[index]) {
+        if (fromTodos[index].archive)
         {
-          var todo = $scope.todos[index];
+          var todo = fromTodos[index];
           todo.id = index;
-          $scope.openTodos.push(todo);
+          todos.push(todo);
         }
       }
     });
-    return $scope.archivedTodos;
+    return todos;
   };
 
   $scope.showCompleted = false;
@@ -149,10 +146,18 @@ angular.module('ezApp')
   };
 
   if (Session.storeSelected)
-    $scope.todos = Todos.getTodos(Session.storeSelected);
+    $scope.todos = Todos.getTodos(Session.selectedStoreId);
   Session.storeSelected = function(id){
     $scope.employees = [];
     $scope.todos = Todos.getTodos(id);
+    $scope.todos.$on('loaded', function(){
+      $scope.openTodos = $scope.getOpenTodos($scope.todos);
+      $scope.archivedTodos = $scope.getArchivedTodos($scope.todos);
+    });
+    $scope.todos.$on('change', function(){
+      $scope.openTodos = $scope.getOpenTodos($scope.todos);
+      $scope.archivedTodos = $scope.getArchivedTodos($scope.todos);
+    });
     Session.getEmployees(id, function(list){
       var emps = [];
       angular.forEach(list.$getIndex(), function (index){
@@ -164,11 +169,18 @@ angular.module('ezApp')
 
   $scope.viewableUsers = Session.getViewableUsers();
 
-  $scope.editingTodo = {};
+  $scope.editingTodo = null;
 
   $scope.toggleEditMode = function(todo){
+    if ($scope.editingTodo)
+    {
+      var value = {};
+      value[todo.id] = $scope.editingTodo;
+      $scope.todos.$set(value);
+    }
+
     if ($scope.editingTodo === todo)
-      $scope.editingTodo = {};
+      $scope.editingTodo = null;
     else
       $scope.editingTodo = todo;
   }

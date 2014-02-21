@@ -340,15 +340,15 @@
 		<tr>
 			<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td style="width:220px">Employee</td><td style="width:110px"><span class="glyphicon glyphicon-time"></span></td><td style="width:40px"><span class="glyphicon glyphicon-pencil"></span></td>
 		</tr>
-		<tr ng-repeat="(id, todo) in getOpenTodos() | orderByPriority | filter:serchText ">
+		<tr ng-repeat="todo in openTodos | orderBy:priority | filter:serchText ">
 			<td ng-show="showReadOnly(todo)">
-				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
-			<td ng-show="showReadOnly(todo)">{{todo.$priority}}</td>
+				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(todo.id)" /></td>
+			<td ng-show="showReadOnly(todo)">{{todo.priority}}</td>
 			<td ng-show="showReadOnly(todo)" class="done-{{todo.done}}" >{{todo.text}}</td>
 			<td ng-show="showReadOnly(todo)">{{todo.employee.firstname}}</td>
 			<td ng-show="showReadOnly(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
 			<td ng-show="showEditing(todo)" ></td>
-			<td ng-show="showEditing(todo)"><input style="width:40px" value="{{editingTodo.$priority}}"></td>
+			<td ng-show="showEditing(todo)"><input style="width:40px" value="{{editingTodo.priority}}"></td>
 			<td ng-show="showEditing(todo)"><textarea cols="48">{{editingTodo.text}}</textarea></td>
 			<td ng-show="showEditing(todo)">
 				<select chosen watch="employees" style="width:200px" ng-model="editingTodo.employee" ng-options="e.firstname for e in employees"></select>
@@ -361,15 +361,15 @@
 	<div class="btn btn-default" ng-click="archive()" style="float: right">Archive {{completed()}} Completed</div>
 
 	<div ng-show="showCompleted" id="completed-tasks-div">
-		<span>{{getArchivedTodos().length}} Archived</span>
+		<span>{{archivedTodos.length}} Archived</span>
 		<table class="todo-table-archive" style="margin-top:20px">
 			<tr>
 				<td style="width:60px"></td><td style="width:50px">Priority</td><td>Task</td><td>Employee</td><td style="width:110px">Due</td>
 			</tr>
-			<tr ng-repeat="(id, todo) in getArchivedTodos() | orderByPriority">
+			<tr ng-repeat="todo in archivedTodos | orderBy:priority">
 				<td>
-				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(id)" /></td>
-				<td>{{todo.$priority}}</td>
+				<input type="checkbox" ng-model="todo.selected" /></td>
+				<td>{{todo.priority}}</td>
 				<td class="done-{{todo.done}}" >{{todo.text}}</td>
 				<td style="width:190px">{{todo.employee.firstname}}</td>
 				<td style="width:120px">{{getDurationStr(todo)}}</td>

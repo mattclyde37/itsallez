@@ -12,5 +12,21 @@ angular.module('ezApp')
 		return $firebase(todosRef);
 	};
 
+	service.addTodo = function(userId, text, employee, priority, duration, timeType){
+		var todos = service.getTodos(userId);
+		debugger;
+		todos.$add({
+			text:text,
+			done:false,
+			archive:false,
+			employee:employee,
+			priority:priority,
+			duration:duration,
+			timeType:timeType,
+			timeStamp:new Date()
+		});
+	};
+
+
 	return service;
 });

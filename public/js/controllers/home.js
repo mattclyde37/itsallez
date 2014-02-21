@@ -34,8 +34,8 @@ angular.module('ezApp')
 	};
 
 	$scope.storeSelected = function(id){
-		debugger;
 		$scope.selectedStore = id;
+		Session.selectedStoreId = id;
 		if (Session.storeSelected)
 			Session.storeSelected(id);
 	};
