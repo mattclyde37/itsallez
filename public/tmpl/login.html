@@ -75,8 +75,33 @@
     display: block;
     margin-top: 10px;
 }
-</style>
 
+
+
+.bar {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.x.axis path {
+    display: none;
+}
+
+</style>
 
 <div class="container">
     <div class="row">
@@ -100,3 +125,12 @@
         </div>
     </div>
 </div>
+
+
+<textarea ng-change="textChanged(mainText)" ng-model="mainText" style="margin: 20px"></textarea>
+
+
+<div class="chart"></div>
+
+
+
