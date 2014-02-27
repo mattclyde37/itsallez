@@ -169,6 +169,9 @@ angular.module('ezApp')
 
         $scope.toggleEditMode = function(todo){
 
+            if ($scope.editingTodoId)
+                $scope.todos.$save($scope.editingTodoId);
+
             if ($scope.editingTodoId === todo.id)
                 $scope.editingTodoId = null;
             else

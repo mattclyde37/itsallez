@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="469b456f-0e4a-4ac0-9e33-dd1f3af609ea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tmpl/home.todo.html" afterPath="$PROJECT_DIR$/public/tmpl/home.todo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tmpl/login.html" afterPath="$PROJECT_DIR$/public/tmpl/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/todo.js" afterPath="$PROJECT_DIR$/public/js/controllers/todo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/services/todos.js" afterPath="$PROJECT_DIR$/public/js/services/todos.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="itsallez.iws" />
@@ -32,7 +30,7 @@
       <file leaf-file-name="login.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="61" selection-start="881" selection-end="881" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="2295">
+            <state line="29" column="61" selection-start="881" selection-end="881" vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="2025">
               <folding />
             </state>
           </provider>
@@ -41,7 +39,7 @@
       <file leaf-file-name="data.tsv" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/data.tsv">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="5" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="544">
+            <state line="26" column="5" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480">
               <folding />
             </state>
           </provider>
@@ -50,16 +48,16 @@
       <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/tmpl/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="0" selection-start="2986" selection-end="2986" vertical-scroll-proportion="0.0" vertical-offset="2244" max-vertical-offset="2397">
+            <state line="122" column="18" selection-start="2734" selection-end="2734" vertical-scroll-proportion="-22.461538" vertical-offset="1490" max-vertical-offset="2397">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="todo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/todo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="170" column="0" selection-start="5510" selection-end="5510" vertical-scroll-proportion="0.0" vertical-offset="2592" max-vertical-offset="3638">
+            <state line="172" column="57" selection-start="5606" selection-end="5606" vertical-scroll-proportion="0.60978264" vertical-offset="2363" max-vertical-offset="3689">
               <folding />
             </state>
           </provider>
@@ -68,16 +66,16 @@
       <file leaf-file-name="todos.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/services/todos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="20" selection-start="143" selection-end="151" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="714">
+            <state line="9" column="20" selection-start="143" selection-end="151" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="630">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.todo.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="home.todo.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/tmpl/home.todo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="350" column="100" selection-start="10198" selection-end="10198" vertical-scroll-proportion="0.37483788" vertical-offset="5661" max-vertical-offset="6596">
+            <state line="353" column="83" selection-start="10399" selection-end="10399" vertical-scroll-proportion="-17.192308" vertical-offset="5554" max-vertical-offset="6596">
               <folding>
                 <element signature="n#style#0;n#td#4;n#tr#1;n#table#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#td#6;n#tr#1;n#table#0;n#div#2;n#!!top" expanded="true" />
@@ -113,16 +111,16 @@
         <option value="$PROJECT_DIR$/public/js/controllers/login.js" />
         <option value="$PROJECT_DIR$/public/tmpl/login.html" />
         <option value="$PROJECT_DIR$/public/js/services/todos.js" />
-        <option value="$PROJECT_DIR$/public/js/controllers/todo.js" />
         <option value="$PROJECT_DIR$/public/tmpl/home.todo.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers/todo.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="3079" />
-    <option name="y" value="247" />
-    <option name="width" value="1343" />
-    <option name="height" value="1058" />
+    <option name="x" value="317" />
+    <option name="y" value="22" />
+    <option name="width" value="1527" />
+    <option name="height" value="1178" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -159,128 +157,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itsallez" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -301,6 +177,14 @@
     </key>
   </component>
   <component name="RunManager" selected="Node.js.Node">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -311,12 +195,8 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -324,10 +204,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
@@ -385,18 +261,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3079" y="247" width="1343" height="1058" extended-state="0" />
+    <frame x="317" y="22" width="1527" height="1178" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16641453" sideWeight="0.67" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16633923" sideWeight="0.67" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13429752" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13345356" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -429,6 +305,51 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="61" selection-start="881" selection-end="881" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2025">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data.tsv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="5" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/tmpl/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="132" column="0" selection-start="2986" selection-end="2986" vertical-scroll-proportion="0.0" vertical-offset="1980" max-vertical-offset="2115">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/todo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="170" column="0" selection-start="5510" selection-end="5510" vertical-scroll-proportion="0.0" vertical-offset="2550" max-vertical-offset="3210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/services/todos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="20" selection-start="143" selection-end="151" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="630">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/tmpl/home.todo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="350" column="100" selection-start="10198" selection-end="10198" vertical-scroll-proportion="0.0" vertical-offset="5250" max-vertical-offset="5820">
+          <folding>
+            <element signature="n#style#0;n#td#4;n#tr#1;n#table#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#6;n#tr#1;n#table#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="61" selection-start="881" selection-end="881" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2295">
@@ -644,13 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/tmpl/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="0" selection-start="2986" selection-end="2986" vertical-scroll-proportion="0.0" vertical-offset="1496" max-vertical-offset="2397">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/services/todos.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="20" selection-start="143" selection-end="151" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
@@ -658,20 +572,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/todo.js">
+    <entry file="file://$PROJECT_DIR$/public/tmpl/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="0" selection-start="5510" selection-end="5510" vertical-scroll-proportion="0.0" vertical-offset="2592" max-vertical-offset="3638">
+        <state line="122" column="18" selection-start="2734" selection-end="2734" vertical-scroll-proportion="-22.461538" vertical-offset="1490" max-vertical-offset="2397">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/tmpl/home.todo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="350" column="100" selection-start="10198" selection-end="10198" vertical-scroll-proportion="0.37483788" vertical-offset="5661" max-vertical-offset="6596">
+        <state line="353" column="83" selection-start="10399" selection-end="10399" vertical-scroll-proportion="-17.192308" vertical-offset="5554" max-vertical-offset="6596">
           <folding>
             <element signature="n#style#0;n#td#4;n#tr#1;n#table#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#td#6;n#tr#1;n#table#0;n#div#2;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/todo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="172" column="57" selection-start="5606" selection-end="5606" vertical-scroll-proportion="0.60978264" vertical-offset="2363" max-vertical-offset="3689">
+          <folding />
         </state>
       </provider>
     </entry>

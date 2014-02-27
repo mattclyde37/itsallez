@@ -351,7 +351,7 @@
 			<td ng-show="showEditing(todo)"><input style="width:40px" ng-model="todo.priority"></td>
 			<td ng-show="showEditing(todo)"><textarea cols="48" ng-model="todo.text"></textarea></td>
 			<td ng-show="showEditing(todo)">
-				<select chosen watch="employees" style="width:200px" ng-model="editingTodo.employee" ng-options="e.firstname for e in employees"></select>
+				<select chosen watch="employees" style="width:200px" ng-model="todo.employee" ng-options="e.firstname for e in employees"></select>
 			</td>
 			<td ng-show="showEditing(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
 			<td><span ng-click="toggleEditMode(todo)" class="glyphicon glyphicon-{{getEditButtonClass(todo)}} tbl-btn"></span></td>
