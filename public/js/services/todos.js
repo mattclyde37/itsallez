@@ -27,6 +27,10 @@ angular.module('ezApp')
 		});
 	};
 
+    service.editTodo = function(userId, todoId, text, done, archive, employee, priority, duration, timeType, timeStamp){
+
+    };
+
 
 	return service;
 });
