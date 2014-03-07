@@ -210,6 +210,7 @@
 
 
 #new-task-form{
+    position: relative;
 	margin-bottom: 45px;
 	margin-top: 30px;
 	width: 850px;
@@ -300,6 +301,14 @@
 	cursor: pointer;
 	color: grey;
 }
+
+.bottom-right{
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+}
+
+
 </style>
 
 <div id="todo-header">
@@ -314,19 +323,25 @@
 		<select chosen style="width:100px;" ng-model="selectedPriority" ng-options="p.label for p in priorities"></select> -->
 		<div>
 			<input class="form-control" type="text" placeholder="Enter non-routine task..." ng-model="todoText" style="width:575px; padding:5px">
-			<input class="form-control" type="text-field" placeholder="Duration" ng-model="duration" style="width:85px; padding:5px">
-			<select chosen watch="timeTypes" style="width:100px" ng-model="selectedTimeType" ng-options="t.label for t in timeTypes">
-			</select>
+
 		</div>
-		<div class="clear"></div>
+        <div>
+            <input class="form-control" type="text-field" placeholder="Duration" ng-model="duration" style="width:85px; padding:5px">
+            <select chosen watch="timeTypes" style="width:100px" ng-model="selectedTimeType" ng-options="t.label for t in timeTypes">
+            </select>
+        </div>
+        <div>
+            <h4 style="color:#606060">Priority:</h4>
+            <select chosen watch="priorities" style="width:50px" ng-model="selectedPriority" ng-options="p.label for p in priorities">
+            </select>
+        </div>
+        <div>
+            <h4 style="color:#606060">Assigned To:</h4>
+            <select chosen watch="employees"  ng-model="employee" ng-options="e.firstname for e in employees" style="width: 200px"></select>
+            <span class="glyphicon glyphicon-user margin-5"></span>
+        </div>
 		<div style="width:775; margin-top:10px">
-			<h4 style="color:#606060">Priority:</h4>
-			<select chosen watch="priorities" style="width:50px" ng-model="selectedPriority" ng-options="p.label for p in priorities">
-			</select>
-			<h4 style="margin-left:25px; color:#606060">Assigned To:</h4>
-			<select chosen watch="employees" style="width:200px"  ng-model="employee" ng-options="e.firstname for e in employees"></select>
-			<span class="glyphicon glyphicon-user margin-5"></span>
-			<input style="float: right" type="submit" class="btn btn-primary" value="Add Task" ></input>
+			<input type="submit" class="btn btn-primary bottom-right" value="Add Task" />
 		</div>
 	</form>
 </div>
@@ -351,7 +366,7 @@
 			<td ng-show="showEditing(todo)"><input style="width:40px" ng-model="todo.priority"></td>
 			<td ng-show="showEditing(todo)"><textarea cols="48" ng-model="todo.text"></textarea></td>
 			<td ng-show="showEditing(todo)">
-				<select chosen watch="employees" style="width:200px" ng-model="editingTodo.employee" ng-options="e.firstname for e in employees"></select>
+		    <select chosen watch="employees" style="width:200px" ng-model="todo.employee" ng-options="e.firstname for e in employees"></select>
 			</td>
 			<td ng-show="showEditing(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
 			<td><span ng-click="toggleEditMode(todo)" class="glyphicon glyphicon-{{getEditButtonClass(todo)}} tbl-btn"></span></td>
