@@ -201,7 +201,7 @@ angular.module('ezApp')
             scope.$watch(attr.watch, function(){
                 element.trigger('chosen:updated');
             });
-            element.chosen();
+            element.chosen({height: "120%"});
         };
 
         return {
