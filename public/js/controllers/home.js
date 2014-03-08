@@ -4,6 +4,11 @@ angular.module('ezApp')
 	.controller('HomeCtrl', function ($scope, $firebase, $state, Auth, Session) {
 	'use strict';
 
+
+    Session.storeSelectedHandler = function (id){
+        $scope.selectedStore = id;
+    }
+
 	$scope.user = Session.getUserAccount();
 	$scope.userId = Session.user.id;
 
@@ -34,10 +39,7 @@ angular.module('ezApp')
 	};
 
 	$scope.storeSelected = function(id){
-		$scope.selectedStore = id;
-		Session.selectedStoreId = id;
-		if (Session.storeSelected)
-			Session.storeSelected(id);
+	    Session.storeSelected(id);
 	};
 
 	$scope.getClassForStore = function(id){

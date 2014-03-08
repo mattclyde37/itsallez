@@ -12,6 +12,17 @@ angular.module('ezApp')
 		return $firebase(todosRef);
 	};
 
+    service.loadTodos = function (userId, handler){
+        var todosRef = new Firebase('https://itsallez-sltd37.firebaseio.com/todos/' + userId);
+        var todos = $firebase(todosRef);
+        todos.$on('loaded', function (){
+            handler(todos);
+        })
+        todos.$on('change', function(){
+            handler(todos);
+        })
+    }
+
 	service.addTodo = function(userId, text, employee, priority, duration, timeType){
 		var todos = service.getTodos(userId);
 		debugger;

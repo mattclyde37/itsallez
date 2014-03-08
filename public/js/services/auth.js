@@ -13,12 +13,12 @@ angular.module('ezApp')
 	    alert('Invalid email or password: ' + error);
 	  } else if (user) {
 	    // user authenticated with Firebase
-	    Session.user = user;
+        Session.login(user);
 	    $state.transitionTo('home');
 	  } else {
 	    // user is logged out
-	    Session.user = null;
-	    $state.transitionTo('login');
+        Session.logout();
+        $state.transitionTo('login');
 	  }
 	});
 	return auth;

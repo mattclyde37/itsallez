@@ -7,11 +7,34 @@ angular.module('ezApp')
 	'use strict';
 	var session = {};
 
+
+    session.login = function (user){
+        session.user = user;
+        session.storeSelected(user.id);
+        session.userLoggedIn(user);
+    }
+    session.userLoggedIn = function (user) {
+
+    }
+
+    session.logout = function (){
+        session.user = null;
+        session.storeSelected(null);
+        session.userLoggedOut();
+    }
+    session.userLoggedOut = function (){
+
+    }
+
+
+
+
+
     var dataRef = new Firebase('https://itsallez-sltd37.firebaseio.com');
     var loginObj = $firebaseSimpleLogin(dataRef);
     loginObj.$getCurrentUser().then(function (user){
-        debugger;
-        session.currentUser = user;
+        session.user = user;
+        session.userLoggedIn(user);
     });
 
 
@@ -61,6 +84,15 @@ angular.module('ezApp')
 			handler(employees);
 		});
 	};
+
+    session.storeSelectedHandler = function (id){ }
+
+    session.storeSelected = function (id){
+        session.storeSelectedId = id;
+        session.storeSelectedHandler(id);
+    }
+
+
 
 	return session;
 });

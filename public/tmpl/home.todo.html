@@ -213,7 +213,7 @@
     position: relative;
 	margin-bottom: 45px;
 	margin-top: 30px;
-	width: 850px;
+	width: 925px;
 	background-color:#e4e8ec; 
 	padding:15px;
 	padding-left: 35px;
@@ -304,10 +304,36 @@
 
 .bottom-right{
     position: absolute;
-    bottom: 25px;
-    right: 25px;
+    bottom: 20px;
+    right: 20px;
 }
 
+.task-form-table td{
+    padding: 10px;
+}
+.task-form-table td:first-of-type{
+    color: #8c8c8c;
+}
+
+.top-right{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.new-task-btn{
+    padding: 0;
+    float: right;
+    color: white;
+}
+.new-task-btn span{
+    color: white;
+    padding: 0;
+}
+.new-task-btn span:hover{
+    color: dodgerblue;
+    padding: 0;
+}
 
 </style>
 
@@ -315,31 +341,45 @@
 	<h2>Hockey Pace To-Do</h2>
 	<span>{{remaining()}} of {{total()}} remaining</span>
 </div>
-
-<div id="new-task-form" class="form-inline" style="">
+<div ng-show="!newTaskWindowVisible">
+    <a ng-click="showNewTaskWindow(true)" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> New Task</a>
+</div>
+<div id="new-task-form" ng-show="newTaskWindowVisible" class="form-inline center" style="">
 	<legend style="color:#606060">What needs to be done?</legend>
+    <a ng-click="showNewTaskWindow(false)" type="button" class="btn btn-default top-right" ><span class="glyphicon glyphicon-remove"></span></a>
 	<form ng-submit="addTodo()">
-		<!--
-		<select chosen style="width:100px;" ng-model="selectedPriority" ng-options="p.label for p in priorities"></select> -->
-		<div>
-			<input class="form-control" type="text" placeholder="Enter non-routine task..." ng-model="todoText" style="width:575px; padding:5px">
 
-		</div>
-        <div>
-            <input class="form-control" type="text-field" placeholder="Duration" ng-model="duration" style="width:85px; padding:5px">
-            <select chosen watch="timeTypes" style="width:100px" ng-model="selectedTimeType" ng-options="t.label for t in timeTypes">
-            </select>
-        </div>
-        <div>
-            <h4 style="color:#606060">Priority:</h4>
-            <select chosen watch="priorities" style="width:50px" ng-model="selectedPriority" ng-options="p.label for p in priorities">
-            </select>
-        </div>
-        <div>
-            <h4 style="color:#606060">Assigned To:</h4>
-            <select chosen watch="employees"  ng-model="employee" ng-options="e.firstname for e in employees" style="width: 200px"></select>
-            <span class="glyphicon glyphicon-user margin-5"></span>
-        </div>
+        <table class="task-form-table">
+            <tr>
+                <td>Task:</td>
+                <td>
+                    <input class="form-control" type="text" placeholder="Enter non-routine task..." ng-model="todoText" style="width:575px; padding:5px">
+                </td>
+            </tr>
+            <tr>
+                <td>Duration:</td>
+                <td>
+                    <input class="form-control" type="text-field" placeholder="Duration" ng-model="duration" style="width:85px; padding:5px">
+                    <select chosen watch="timeTypes" style="width:100px" ng-model="selectedTimeType" ng-options="t.label for t in timeTypes">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Priority:</td>
+                <td>
+                    <select chosen watch="priorities" style="width:50px" ng-model="selectedPriority" ng-options="p.label for p in priorities">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Assigned To:</td>
+                <td>
+                    <select chosen watch="employees"  ng-model="employee" ng-options="e.firstname for e in employees" style="width: 200px"></select>
+                    <span class="glyphicon glyphicon-user margin-5"></span>
+                </td>
+            </tr>
+        </table>
+
 		<div style="width:775; margin-top:10px">
 			<input type="submit" class="btn btn-primary bottom-right" value="Add Task" />
 		</div>

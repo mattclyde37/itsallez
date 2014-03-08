@@ -4,7 +4,23 @@ angular.module('ezApp')
 	.controller('TodoCtrl', function ($scope, $firebase, $state, $interval, Auth, Todos, Session) {
 	'use strict';
 
-        $scope.todos = {};
+        Session.userLoggedIn = function (user){
+            debugger;
+        }
+
+        if (Session.user)
+        {
+            if (!Session.storeSelectedId)
+                Session.storeSelectedId = Session.user.id;
+            Todos.loadTodos(Session.user.id, function (todos){
+                $scope.todos = todos;
+                $scope.openTodos = $scope.getOpenTodos($scope.todos);
+                $scope.archivedTodos = $scope.getArchivedTodos($scope.todos);
+            });
+        }
+        else
+            $scope.todos = {};
+
 
         $scope.archivedTodos = [];
         $scope.employees = [];
@@ -27,7 +43,7 @@ angular.module('ezApp')
 
 
         $scope.addTodo = function() {
-            Todos.addTodo(Session.selectedStoreId, $scope.todoText, $scope.employee, $scope.selectedPriority.label, $scope.duration, $scope.selectedTimeType.label);
+            Todos.addTodo(Session.storeSelectedId, $scope.todoText, $scope.employee, $scope.selectedPriority.label, $scope.duration, $scope.selectedTimeType.label);
             $scope.todoText = '';
         };
 
@@ -141,12 +157,16 @@ angular.module('ezApp')
             return (todo.duration) ? todo.duration + ' ' + todo.timeType : 'n/a';
         };
 
-        if (Session.storeSelected)
-            $scope.todos = Todos.getTodos(Session.selectedStoreId);
-        Session.storeSelected = function(id){
+
+        if (Session.storeSelectedId)
+            Todos.loadTodos(Session.storeSelectedId, function (todos){
+                $scope.todos = todos;
+            });
+
+        Session.storeSelectedHandler = function(id){
             $scope.employees = [];
-            $scope.todos = Todos.getTodos(id);
-            $scope.todos.$on('loaded', function(){
+            Todos.loadTodos(id, function (todos){
+                $scope.todos = todos;
                 $scope.openTodos = $scope.getOpenTodos($scope.todos);
                 $scope.archivedTodos = $scope.getArchivedTodos($scope.todos);
             });
@@ -169,6 +189,7 @@ angular.module('ezApp')
 
         $scope.toggleEditMode = function(todo){
 
+            debugger;
             if ($scope.editingTodoId)
                 $scope.todos.$save($scope.editingTodoId);
 
@@ -188,6 +209,10 @@ angular.module('ezApp')
 
         $scope.showEditing = function (todo){
             return (todo.id === $scope.editingTodoId);
+        }
+
+        $scope.showNewTaskWindow = function(value){
+            $scope.newTaskWindowVisible = value;
         }
 
     });
