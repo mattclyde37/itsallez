@@ -2,10 +2,19 @@
 /* global angular, Firebase, console */
 
 angular.module('ezApp')
-	.factory('Session', function ($firebase)
+	.factory('Session', function ($firebase, $firebaseSimpleLogin)
 {
 	'use strict';
 	var session = {};
+
+    var dataRef = new Firebase('https://itsallez-sltd37.firebaseio.com');
+    var loginObj = $firebaseSimpleLogin(dataRef);
+    loginObj.$getCurrentUser().then(function (user){
+        debugger;
+        session.currentUser = user;
+    });
+
+
 
 	session.getUserAccount = function(){
 		if (session.user){
