@@ -28,14 +28,15 @@ angular.module('ezApp')
 
 
 
-
-
-    var dataRef = new Firebase('https://itsallez-sltd37.firebaseio.com');
-    var loginObj = $firebaseSimpleLogin(dataRef);
-    loginObj.$getCurrentUser().then(function (user){
-        session.user = user;
-        session.userLoggedIn(user);
-    });
+    session.getCurrentUser = function(){
+        var dataRef = new Firebase('https://itsallez-sltd37.firebaseio.com');
+        var loginObj = $firebaseSimpleLogin(dataRef);
+        var currentUser = loginObj.$getCurrentUser();
+        currentUser.then(function (user){
+            session.user = user;
+        });
+        return currentUser;
+    }
 
 
 

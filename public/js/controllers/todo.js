@@ -8,6 +8,13 @@ angular.module('ezApp')
             debugger;
         }
 
+        var currentUser = Session.getCurrentUser();
+        currentUser.then(function (user){
+            if (user)
+                loadDataForUser(user.id);
+        })
+
+        /*
         if (Session.user)
         {
             if (!Session.storeSelectedId)
@@ -20,6 +27,7 @@ angular.module('ezApp')
         }
         else
             $scope.todos = {};
+        */
 
 
         $scope.archivedTodos = [];
@@ -50,28 +58,34 @@ angular.module('ezApp')
 
         $scope.remaining = function() {
             var count = 0;
-            angular.forEach($scope.todos.$getIndex(), function (index) {
-            if ($scope.todos[index])
-                count += $scope.todos[index].done ? 0 : 1;
-            });
+            if ($scope.todos) {
+                angular.forEach($scope.todos.$getIndex(), function (index) {
+                if ($scope.todos[index])
+                    count += $scope.todos[index].done ? 0 : 1;
+                });
+            }
             return count;
         };
 
         $scope.total = function() {
             var count = 0;
-            angular.forEach($scope.todos.$getIndex(), function (index) {
-                if ($scope.todos[index])
-                    if (!$scope.todos[index].archive)
-                count++;
-            });
+            if ($scope.todos) {
+                angular.forEach($scope.todos.$getIndex(), function (index) {
+                    if ($scope.todos[index])
+                        if (!$scope.todos[index].archive)
+                    count++;
+                });
+            }
             return count;
         };
 
         $scope.completed = function() {
             var count = 0;
-            for (var i = 0; i < $scope.openTodos.length; ++i){
-                if ($scope.openTodos[i].done)
-                    count++;
+            if ($scope.openTodos) {
+                for (var i = 0; i < $scope.openTodos.length; ++i){
+                    if ($scope.openTodos[i].done)
+                        count++;
+                }
             }
             return count;
         };
@@ -159,11 +173,13 @@ angular.module('ezApp')
 
 
         if (Session.storeSelectedId)
-            Todos.loadTodos(Session.storeSelectedId, function (todos){
-                $scope.todos = todos;
-            });
+            loadDataForUser(Session.storeSelectedId);
 
         Session.storeSelectedHandler = function(id){
+            loadDataForUser(id);
+        };
+
+        function loadDataForUser(id){
             $scope.employees = [];
             Todos.loadTodos(id, function (todos){
                 $scope.todos = todos;
@@ -171,19 +187,16 @@ angular.module('ezApp')
                 $scope.archivedTodos = $scope.getArchivedTodos($scope.todos);
             });
 
-            $scope.todos.$on('change', function(){
-                $scope.openTodos = $scope.getOpenTodos($scope.todos);
-                $scope.archivedTodos = $scope.getArchivedTodos($scope.todos);
-            });
-
             Session.getEmployees(id, function(list){
                 var emps = [];
-                angular.forEach(list.$getIndex(), function (index){
-                    emps.push(list[index]);
-                });
+                if (list){
+                    angular.forEach(list.$getIndex(), function (index){
+                        emps.push(list[index]);
+                    });
+                }
                 $scope.employees = emps;
             });
-        };
+        }
 
         $scope.editingTodoId = null;
 

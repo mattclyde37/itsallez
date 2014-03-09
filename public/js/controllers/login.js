@@ -22,6 +22,7 @@ angular.module('ezApp')
           };
 
 
+        /*
         $scope.textChanged = function(text){
             var chars = text.toUpperCase().split('');
             var keyValues = {};
@@ -118,13 +119,12 @@ angular.module('ezApp')
 
         };
 
-                
-
 
         function type(d) {
             d.frequency = +d.frequency;
             return d;
         }
+        */
 
 
 });

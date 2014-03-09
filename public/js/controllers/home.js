@@ -4,13 +4,18 @@ angular.module('ezApp')
 	.controller('HomeCtrl', function ($scope, $firebase, $state, Auth, Session) {
 	'use strict';
 
+    Session.userLoggedIn = function(user){
+        debugger;
+        $scope.user = user;
+    }
 
     Session.storeSelectedHandler = function (id){
         $scope.selectedStore = id;
     }
 
 	$scope.user = Session.getUserAccount();
-	$scope.userId = Session.user.id;
+    if (Session.user)
+        $scope.userId = Session.user.id;
 
 	$scope.selectedState = '';
 	$scope.getClassForState = function (state) {
