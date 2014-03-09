@@ -40,11 +40,12 @@ angular.module('ezApp')
 
 
 
-	session.getUserAccount = function(){
-		if (session.user){
-			var userRef = new Firebase('https://itsallez-sltd37.firebaseio.com/users/' + session.user.id);
-			return $firebase(userRef);
-		}
+	session.getEmployeeAccount = function(id, handler){
+        var userRef = new Firebase('https://itsallez-sltd37.firebaseio.com/users/' + id);
+        var emp =  $firebase(userRef);
+        emp.$on('loaded', function (){
+            handler(emp);
+        })
 	};
 
 	session.getViewableUsers = function(handler){
@@ -57,9 +58,12 @@ angular.module('ezApp')
 					currentUser = users[index];
 			});
 
+            debugger;
 			var viewableRoles = null;
 			if (currentUser && currentUser.role === 'admin')
-				viewableRoles = ['store', 'ro-manager'];
+				viewableRoles = ['store', 'RO Manager'];
+            if (currentUser && currentUser.role === 'RO Manager')
+                viewableRoles = ['store'];
 
 			if (viewableRoles)
 			{

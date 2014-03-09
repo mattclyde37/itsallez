@@ -4,31 +4,11 @@ angular.module('ezApp')
 	.controller('TodoCtrl', function ($scope, $firebase, $state, $interval, Auth, Todos, Session) {
 	'use strict';
 
-        Session.userLoggedIn = function (user){
-            debugger;
-        }
-
         var currentUser = Session.getCurrentUser();
         currentUser.then(function (user){
             if (user)
                 loadDataForUser(user.id);
-        })
-
-        /*
-        if (Session.user)
-        {
-            if (!Session.storeSelectedId)
-                Session.storeSelectedId = Session.user.id;
-            Todos.loadTodos(Session.user.id, function (todos){
-                $scope.todos = todos;
-                $scope.openTodos = $scope.getOpenTodos($scope.todos);
-                $scope.archivedTodos = $scope.getArchivedTodos($scope.todos);
-            });
-        }
-        else
-            $scope.todos = {};
-        */
-
+        });
 
         $scope.archivedTodos = [];
         $scope.employees = [];
@@ -47,11 +27,19 @@ angular.module('ezApp')
         { label: 'Days' },
         { label: 'Weeks' }
         ];
+
+        $scope.timeTypes = [
+            'Minutes',
+            'Hours',
+            'Days',
+            'Weeks'
+        ];
+
         $scope.selectedTimeType = $scope.timeTypes[0];
 
 
         $scope.addTodo = function() {
-            Todos.addTodo(Session.storeSelectedId, $scope.todoText, $scope.employee, $scope.selectedPriority.label, $scope.duration, $scope.selectedTimeType.label);
+            Todos.addTodo(Session.storeSelectedId, $scope.todoText, $scope.employee, $scope.selectedPriority.label, $scope.duration, $scope.selectedTimeType);
             $scope.todoText = '';
         };
 
@@ -195,6 +183,13 @@ angular.module('ezApp')
                     });
                 }
                 $scope.employees = emps;
+                if ($scope.employees.length == 0){
+                    Session.getEmployeeAccount(id, function (employee){
+                        $scope.employee = employee;
+                    })
+                }
+                else
+                    $scope.employee = {};
             });
         }
 
@@ -202,7 +197,6 @@ angular.module('ezApp')
 
         $scope.toggleEditMode = function(todo){
 
-            debugger;
             if ($scope.editingTodoId)
                 $scope.todos.$save($scope.editingTodoId);
 
@@ -224,8 +218,20 @@ angular.module('ezApp')
             return (todo.id === $scope.editingTodoId);
         }
 
+        $scope.showEditing_ForEmployeesDropdown = function(){
+            return ($scope.employees.length > 0);
+        }
+
+        $scope.showEditing_ForEmployeesLabel = function (){
+            return ($scope.employees.length === 0);
+        }
+
         $scope.showNewTaskWindow = function(value){
             $scope.newTaskWindowVisible = value;
+        }
+
+        $scope.showEmployeeDropdown = function (){
+            return ($scope.employees && $scope.employees.length > 0);
         }
 
     });

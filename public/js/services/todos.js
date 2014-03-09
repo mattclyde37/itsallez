@@ -24,18 +24,20 @@ angular.module('ezApp')
     }
 
 	service.addTodo = function(userId, text, employee, priority, duration, timeType){
-		var todos = service.getTodos(userId);
-		debugger;
-		todos.$add({
-			text:text,
-			done:false,
-			archive:false,
-			employee:employee,
-			priority:priority,
-			duration:duration,
-			timeType:timeType,
-			timeStamp:new Date()
-		});
+        if (text)
+        {
+            var todos = service.getTodos(userId);
+            todos.$add({
+                text:text,
+                done:false,
+                archive:false,
+                employee:employee,
+                priority:priority,
+                duration:duration,
+                timeType:timeType,
+                timeStamp:new Date()
+            });
+        }
 	};
 
     service.editTodo = function(userId, todoId, text, done, archive, employee, priority, duration, timeType, timeStamp){
