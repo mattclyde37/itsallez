@@ -6,8 +6,9 @@ angular.module('ezApp')
 
         var currentUser = Session.getCurrentUser();
         currentUser.then(function (user){
-            if (user)
+            if (user) {
                 loadDataForUser(user.id);
+            }
         });
 
         $scope.archivedTodos = [];
@@ -39,8 +40,33 @@ angular.module('ezApp')
 
 
         $scope.addTodo = function() {
-            Todos.addTodo(Session.storeSelectedId, $scope.todoText, $scope.employee, $scope.selectedPriority.label, $scope.duration, $scope.selectedTimeType);
-            $scope.todoText = '';
+
+            var selectedEmployeeAccount;
+            var userEmployeeAccount;
+            var callbacks = 0;
+
+            Session.getEmployeeAccount(Session.user.id, function(emp){
+                callbacks++;
+                userEmployeeAccount = emp;
+                if (callbacks == 2)
+                    addTodo();
+            })
+            Session.getEmployeeAccount(Session.storeSelectedId, function(emp){
+                callbacks++;
+                selectedEmployeeAccount = emp;
+                if (callbacks == 2)
+                    addTodo();
+            })
+            function addTodo(){
+                var markerColor = null;
+                if (selectedEmployeeAccount.id !== userEmployeeAccount.id && userEmployeeAccount.markerColor){
+                    markerColor = userEmployeeAccount.markerColor;
+                    $scope.todoText += ' (From: ' + userEmployeeAccount.firstname.substring(0, 1).toUpperCase() + userEmployeeAccount.lastname.substring(0, 1).toUpperCase() + ')';
+                }
+                Todos.addTodo(Session.storeSelectedId, $scope.todoText, $scope.employee, $scope.selectedPriority.label, $scope.duration, $scope.selectedTimeType, markerColor);
+                $scope.todoText = '';
+            }
+
         };
 
 
@@ -232,6 +258,10 @@ angular.module('ezApp')
 
         $scope.showEmployeeDropdown = function (){
             return ($scope.employees && $scope.employees.length > 0);
+        }
+
+        $scope.getBackgroundColor = function (todo){
+            return (todo.markerColor) ? 'background-color: #' + todo.markerColor : '';
         }
 
     });

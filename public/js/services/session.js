@@ -58,10 +58,9 @@ angular.module('ezApp')
 					currentUser = users[index];
 			});
 
-            debugger;
 			var viewableRoles = null;
-			if (currentUser && currentUser.role === 'admin')
-				viewableRoles = ['store', 'RO Manager'];
+			if (currentUser && currentUser.role === 'admin' || currentUser.role === 'tech')
+				viewableRoles = ['store', 'RO Manager', 'admin'];
             if (currentUser && currentUser.role === 'RO Manager')
                 viewableRoles = ['store'];
 
@@ -70,7 +69,7 @@ angular.module('ezApp')
 				var viewableUsers = [];
 				angular.forEach(users.$getIndex(), function (index){
 					for (var i = 0; i < viewableRoles.length; ++i)
-						if (viewableRoles[i] === users[index].role)
+						if (viewableRoles[i] === users[index].role && session.user.id != index)
 						{
 							var u = users[index];
 							u.id = index;

@@ -23,7 +23,7 @@ angular.module('ezApp')
         })
     }
 
-	service.addTodo = function(userId, text, employee, priority, duration, timeType){
+	service.addTodo = function(userId, text, employee, priority, duration, timeType, markerColor){
         if (text)
         {
             var todos = service.getTodos(userId);
@@ -35,7 +35,8 @@ angular.module('ezApp')
                 priority:priority,
                 duration:duration,
                 timeType:timeType,
-                timeStamp:new Date()
+                timeStamp:new Date(),
+                markerColor:markerColor
             });
         }
 	};
