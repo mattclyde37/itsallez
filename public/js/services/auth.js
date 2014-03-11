@@ -10,11 +10,12 @@ angular.module('ezApp')
 	var auth = new FirebaseSimpleLogin(ref, function(error, user) {
 	  if (error) {
 	    // an error occurred while attempting login
-	    alert('Invalid email or password: ' + error);
+	    alert('Invalid email or password');
+        console.log(error);
 	  } else if (user) {
 	    // user authenticated with Firebase
         Session.login(user);
-	    $state.transitionTo('home');
+	    $state.transitionTo('home.todo');
 	  } else {
 	    // user is logged out
         Session.logout();

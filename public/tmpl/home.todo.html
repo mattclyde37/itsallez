@@ -374,7 +374,7 @@
             <tr ng-show="showEmployeeDropdown()">
                 <td>Assigned To:</td>
                 <td>
-                    <select chosen watch="employees"  ng-model="employee" ng-options="e.firstname for e in employees" style="width: 200px"></select>
+                    <select chosen ng-model="employee" watch="employees" ng-options="e as e | employeeName for e in employees" style="width:200px"></select>
                     <span class="glyphicon glyphicon-user margin-5"></span>
                 </td>
             </tr>
@@ -400,13 +400,13 @@
 				<input type="checkbox" ng-model="todo.done" ng-change="todos.$save(todo.id)" /></td>
 			<td ng-show="showReadOnly(todo)">{{todo.priority}}</td>
 			<td ng-show="showReadOnly(todo)" class="done-{{todo.done}}" >{{todo.text}}</td>
-			<td ng-show="showReadOnly(todo)">{{todo.employee.firstname}}</td>
+			<td ng-show="showReadOnly(todo)">{{todo.employee | employeeName}}</td>
 			<td ng-show="showReadOnly(todo)" style="width:120px">{{getDurationStr(todo)}}</td>
 			<td ng-show="showEditing(todo)" ></td>
 			<td ng-show="showEditing(todo)"><input style="width:40px" ng-model="todo.priority"></td>
 			<td ng-show="showEditing(todo)"><textarea cols="48" ng-model="todo.text"></textarea></td>
 			<td ng-show="showEditing(todo)">
-                <select chosen watch="employees" style="width:200px" ng-model="todo.employee" ng-options="e.firstname for e in employees"></select>
+                <select chosen watch="employees" style="width:200px" ng-model="todo.employee" ng-options="e as e | employeeName for e in employees"></select>
             </td>
 			<td ng-show="showEditing(todo)" style="width:120px">
                 <input type="text" style="width:65px" placeholder="Duration" ng-model="todo.duration"/>
@@ -429,7 +429,7 @@
 				<input type="checkbox" ng-model="todo.selected" /></td>
 				<td>{{todo.priority}}</td>
 				<td class="done-{{todo.done}}" >{{todo.text}}</td>
-				<td style="width:190px">{{todo.employee.firstname}}</td>
+				<td style="width:190px">{{todo.employee | employeeName}}</td>
 				<td style="width:120px">{{getDurationStr(todo)}}</td>
 			</tr>
 		</table>

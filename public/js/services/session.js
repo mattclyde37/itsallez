@@ -58,6 +58,7 @@ angular.module('ezApp')
 					currentUser = users[index];
 			});
 
+
 			var viewableRoles = null;
 			if (currentUser && currentUser.role === 'admin' || currentUser.role === 'tech')
 				viewableRoles = ['store', 'RO Manager', 'admin'];
@@ -67,16 +68,24 @@ angular.module('ezApp')
 			if (viewableRoles)
 			{
 				var viewableUsers = [];
+                var viewableStores = [];
 				angular.forEach(users.$getIndex(), function (index){
 					for (var i = 0; i < viewableRoles.length; ++i)
 						if (viewableRoles[i] === users[index].role && session.user.id != index)
 						{
 							var u = users[index];
 							u.id = index;
-							viewableUsers.push(u);
+                            if (u.role === 'store')
+                                viewableStores.push(u);
+                            else
+							    viewableUsers.push(u);
 						}
 				});
-				handler(viewableUsers);
+                viewableStores.sort(function (a, b){
+                   return a.store_code > b.store_code;
+                });
+                var result = viewableStores.concat(viewableUsers);
+				handler(result);
 			}
 		});
 	};

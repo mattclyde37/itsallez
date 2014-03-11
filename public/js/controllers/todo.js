@@ -7,7 +7,7 @@ angular.module('ezApp')
         var currentUser = Session.getCurrentUser();
         currentUser.then(function (user){
             if (user) {
-                loadDataForUser(user.id);
+                //loadDataForUser(user.id);
             }
         });
 
@@ -186,6 +186,7 @@ angular.module('ezApp')
         };
 
 
+        debugger;
         if (Session.storeSelectedId)
             loadDataForUser(Session.storeSelectedId);
 
@@ -208,16 +209,24 @@ angular.module('ezApp')
                         emps.push(list[index]);
                     });
                 }
+                debugger;
                 $scope.employees = emps;
                 if ($scope.employees.length == 0){
                     Session.getEmployeeAccount(id, function (employee){
                         $scope.employee = employee;
                     })
                 }
-                else
-                    $scope.employee = {};
+                else {
+                    $scope.employees.splice(0, 0, {firstname:'(unassigned)', lastname:''});
+                    $scope.employees.splice($scope.employees.length, 0, {firstname:'Trainee 1', lastname:''});
+                    $scope.employees.splice($scope.employees.length, 0, {firstname:'Trainee 2', lastname:''});
+                    $scope.employees.splice($scope.employees.length, 0, {firstname:'Trainee 3', lastname:''});
+
+                    $scope.employee = $scope.employees[0];
+                }
             });
         }
+
 
         $scope.editingTodoId = null;
 
@@ -275,11 +284,18 @@ angular.module('ezApp')
             scope.$watch(attr.watch, function(){
                 element.trigger('chosen:updated');
             });
-            element.chosen({height: "120%"});
+            element.chosen();
         };
 
         return {
             restrict: 'A',
             link: linker
         };
+    });
+
+angular.module('ezApp')
+    .filter('employeeName', function(){
+        return function(emp){
+            return emp.firstname + ' ' + emp.lastname.substring(0, 1).toUpperCase();
+        }
     });
